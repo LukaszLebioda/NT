@@ -25,7 +25,6 @@ You can:
 
 - Chat with the agent to clarify details
 - Provide written specs or design docs as input (they get converted to .feature)
-- Share wireframes/mockups (they inform UI but never override behavior)
 
 The spec-analyst agent asks clarifying questions if anything is ambiguous. **You
 answer those questions — agents never invent requirements.**
@@ -55,8 +54,7 @@ agents' specs.
 
 **Reads (in addition to the injected `AGENTS.md` + `core.md`):**
 - the feature description you typed (becomes `$ARGUMENTS`),
-- `spec/domains/<domain>/requirements.md` — if the domain already has rules,
-- any `spec/domains/<domain>/ui/*.ui.md` (for wording only).
+- `spec/domains/<domain>/requirements.md` — if the domain already has rules.
 
 **Writes:** `spec/domains/<domain>/requirements.md` **first**, then
 `spec/features/<domain>/<feature-slug>.feature`.
@@ -195,7 +193,6 @@ in the review file, never in an edit to the spec).
 **Reads (in addition to the injected `AGENTS.md` + `core.md`):**
 - `spec/features/<domain>/<feature-slug>.feature`,
 - `spec/domains/<domain>/requirements.md` (the rules of record),
-- any `spec/domains/<domain>/ui/*.ui.md` (visual notes),
 - sibling features in the same domain when relevant.
 
 **Writes:** `spec/features/<domain>/<feature-slug>.review.md` — **always**,
@@ -213,7 +210,7 @@ corresponding Next action in `STATUS.md`.
 
 **What it does:**
 
-1. Reads the `.feature`, the `requirements.md`, sibling features, and any UI notes
+1. Reads the `.feature`, the `requirements.md`, and sibling features
 2. Checks:
    - **Coverage** — every scenario has valid `@req` tags; every requirement is proven
    - **Orphans** — no scenario proving a rule that doesn't exist
@@ -308,8 +305,7 @@ explicitly **denied**.
 - `spec/features/<domain>/<feature-slug>.feature`,
 - `spec/features/<domain>/<feature-slug>.review.md` — **must** say
   `Approved for design`, else the architect stops,
-- `spec/domains/<domain>/requirements.md`,
-- any `spec/domains/<domain>/ui/*.ui.md`.
+- `spec/domains/<domain>/requirements.md`.
 
 **Writes:** `spec/features/<domain>/<feature-slug>.design.md` and the shared
 `spec/domains/<domain>/data-model.md`.
@@ -323,7 +319,7 @@ ticks `designed` and sets this as `STATUS.md`'s Next action.
 
 **What it does:**
 
-1. Reads the `.feature`, `requirements.md`, `.review.md`, and UI notes
+1. Reads the `.feature`, `requirements.md`, and `.review.md`
 2. Produces a technical design mapping scenarios to implementation
 3. Updates the shared domain data model
 4. Prints `[STATUS] <domain>/<feature-slug> designed done|blocked: <reason>`
@@ -351,7 +347,7 @@ The **technical blueprint** for test-author and implementer.
 **3. UI plan:**
 
 - React routes/components and their state
-- Mapped to UI notes
+- Mapped to the scenarios and rules
 
 **4. Test plan:**
 
@@ -1249,9 +1245,7 @@ spec/
 ├── domains/
 │   └── novels/
 │       ├── requirements.md          [analyst, stage 1]
-│       ├── data-model.md            [architect, stage 3]
-│       └── ui/
-│           └── novel-form.ui.md     [optional input]
+│       └── data-model.md            [architect, stage 3]
 └── features/
     └── novels/
         ├── create-novel.feature      [analyst, stage 1]
@@ -1478,9 +1472,9 @@ Each row is *in addition to* the always-loaded `AGENTS.md` + `.kilo/rules/core.m
 
 | Stage | Agent | Reads | Writes |
 | ----- | ----- | ----- | ------ |
-| 1 Analyse | spec-analyst | your description / `--revise` text · `spec/domains/<domain>/requirements.md` (if any) · `ui/*.ui.md` | `spec/domains/<domain>/requirements.md`, then `spec/features/<domain>/<feature>.feature` |
-| 2 Critique | spec-critic | `.feature` · `requirements.md` · `ui/*.ui.md` · sibling features | `spec/features/<domain>/<feature>.review.md` |
-| 3 Design | spec-architect | `.feature` · `.review.md` (must be `Approved for design`) · `requirements.md` · `ui/*.ui.md` | `spec/features/<domain>/<feature>.design.md`, `spec/domains/<domain>/data-model.md` |
+| 1 Analyse | spec-analyst | your description / `--revise` text · `spec/domains/<domain>/requirements.md` (if any) | `spec/domains/<domain>/requirements.md`, then `spec/features/<domain>/<feature>.feature` |
+| 2 Critique | spec-critic | `.feature` · `requirements.md` · sibling features | `spec/features/<domain>/<feature>.review.md` |
+| 3 Design | spec-architect | `.feature` · `.review.md` (must be `Approved for design`) · `requirements.md` | `spec/features/<domain>/<feature>.design.md`, `spec/domains/<domain>/data-model.md` |
 | 4 Test | spec-test-author | `.feature` · `.design.md` (fixtures section) · `data-model.md` | `app/tests/e2e/**`, `app/tests/api/**`, `app/tests/e2e/fixtures/**` |
 | 5 Implement | spec-implementer | `.feature` · `.design.md` · `data-model.md` · existing `app/tests/**` | `app/**`, root `package.json` |
 

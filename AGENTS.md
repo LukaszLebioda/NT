@@ -75,14 +75,12 @@ editing, and deleting are **deferred** and will be added later.
 
 ## Specs
 
-Specs have three layers, all written from the user's plain-language input:
+Specs have two layers, all written from the user's plain-language input:
 
 - **Rules:** `spec/domains/<domain>/requirements.md` — canonical numbered
   requirements (`REQ-001`, …) in EARS form. Source of truth for business rules.
 - **Examples:** `spec/features/<domain>/<feature-slug>.feature` — executable
   Gherkin scenarios, each tagged `@req:<domain>#REQ-nnn` to the rule it proves.
-- **Design (looks):** `spec/domains/<domain>/ui/<screen>.ui.md` — low-fidelity
-  UI notes. Visual/layout only; never the behavioural source of truth.
 
 A `.feature` file is frozen once analysed; only the `spec-analyst` agent, in
 revise mode, may edit it afterwards.

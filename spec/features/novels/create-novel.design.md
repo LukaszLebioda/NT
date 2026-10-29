@@ -5,7 +5,6 @@
 **Feature:** `spec/features/novels/create-novel.feature` (20 scenarios)
 **Review gate:** `create-novel.review.md`
 **Shared model:** [`../../domains/novels/data-model.md`](../../domains/novels/data-model.md)
-**UI note:** `spec/domains/novels/ui/novel-form.ui.md`
 
 **Scope (narrowed 2026-10-27):** authentication and per-user ownership are
 **deferred**. This design has no login, no `requireAuth`, and no `user_id`: the
@@ -121,9 +120,9 @@ Details:
 | After success | Show a success confirmation and keep the form available for another entry (the collection list is a deferred feature) |
 | Cancel | Reset the form |
 
-Mapping from the UI note:
+Mapping from the rules to components:
 
-| UI note element | Component |
+| Element | Component |
 |---|---|
 | Author / Polish title / Original title text boxes | `TextField` |
 | Year number field with spinner | `YearField` — text input with `inputMode="numeric"` and custom up/down stepper buttons; validates `^\d{4}$` and 1000-9999 on submit |

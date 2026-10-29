@@ -19,8 +19,8 @@ does not contain `Approved for design`, stop and say so.
 
 ## Workflow
 
-1. Read the feature's `.feature`, the domain's `requirements.md`, and any
-   `ui/*.ui.md` notes. Read the sibling features when the design spans them.
+1. Read the feature's `.feature` and the domain's `requirements.md`. Read the
+   sibling features when the design spans them.
 2. Write `spec/features/<domain>/<feature-slug>.design.md` with:
    - **API contract** — each endpoint: method, path, auth requirement, request
      body, response body, and error responses; each mapped to the scenarios it

@@ -119,24 +119,19 @@ The agent always proposes the change (showing the exact text) and applies it
 only after the user approves. Rules live in `.kilo/rules/` (always-on) and
 `.kilo/agent/` (per-agent); permission settings live in `.kilo/kilo.json`.
 
-## Design inputs — docs and wireframes
+## Design inputs — specification documents
 
-External design material is an input to the spec-driven loop, never the
-behavioral source of truth:
+External requirements are an input to the spec-driven loop, never the behavioral
+source of truth:
 
 - **Written requirements / specification documents** are analyse-stage inputs.
-  The user provides them (or places them under `spec/domains/<domain>/`) and
-  the spec-analyst converts them into `.feature` scenarios. The frozen
-  `.feature` remains the source of truth.
-- **UI designs and wireframes** (e.g. Figma, low-fidelity sketches) are
-  implementation inputs for the `app/client/` UI and may inform the wording of
-  UI-facing scenarios. When kept in-repo they live under
-  `spec/domains/<domain>/ui/`. Visual layout is never the behavioral source of
-  truth — the Gherkin scenarios are.
+  The user provides them (or places them under `spec/domains/<domain>/`) and the
+  spec-analyst converts them into `.feature` scenarios. The frozen `.feature`
+  remains the source of truth.
 
-Never treat a design document or wireframe as a requirement that overrides a
-frozen `.feature`: when they disagree, the `.feature` wins until it is revised
-through the spec-analyst.
+Never treat a design document as a requirement that overrides a frozen
+`.feature`: when they disagree, the `.feature` wins until it is revised through
+the spec-analyst.
 
 ## Done means documented
 

@@ -47,7 +47,7 @@ NovelTracker/
 ├── README.md        this file — human documentation + history
 ├── .kilo/           AI config: agents, commands, rules, permissions
 ├── spec/            the specifications (what the product must do)
-│   ├── domains/<domain>/    requirements.md, data-model.md, ui/ notes
+│   ├── domains/<domain>/    requirements.md, data-model.md
 │   └── features/<domain>/   *.feature, *.review.md, *.design.md
 ├── app/             the runnable product
 │   ├── server/      Express API (src/, migrations/)
@@ -67,7 +67,7 @@ Two layers: **process at the root** (`.kilo/`, `spec/`, `AGENTS.md`, `STATUS.md`
 - **`spec/`** has two parts:
   - `domains/<domain>/` — `requirements.md`, the numbered rules of record
     (`REQ-001`…, each written as one "When …, the system must …" EARS sentence),
-    plus the shared `data-model.md` and low-fidelity `ui/` notes.
+    plus the shared `data-model.md`.
   - `features/<domain>/` — the frozen `*.feature` scenarios, each with its
     `*.review.md` verdict and `*.design.md` design.
 - **`app/`** is an npm workspace with `server`, `client`, `tests`, `docker`, and
@@ -268,3 +268,10 @@ stage, review, then the next). The automatic driver (`/spec-flow`) is
   next command (or the blocker), before printing `[STATUS]`. Previously only the
   user/orchestrator wrote status, so manual runs left `STATUS.md` stale. `README.md`
   stays controller-owned. `.kilo/rules/core.md`, `AGENTS.md`, and `FLOW.md` updated.
+- 2026-10-29 — **Removed UI notes.** Deleted `spec/domains/novels/ui/` (the
+  `.ui.md` low-fidelity UI notes) and dropped that layer from the spec model.
+  Specs are now two layers — domain `requirements.md` (rules) and feature
+  `.feature` (examples) — plus `data-model.md` and the architect's `.design.md`.
+  References cleaned from `.kilo/rules/core.md`, the `spec-critic`/`spec-architect`
+  prompts, the `spec-critique`/`spec-design` commands, `AGENTS.md`, `FLOW.md`, and
+  the spec docs (`data-model.md`, `create-novel.review.md`, `create-novel.design.md`).

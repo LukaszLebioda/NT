@@ -7,7 +7,7 @@ novel** only. Authentication and per-user ownership, listing/filtering, editing,
 and deleting are deferred; their model parts are removed here and will return
 with those features.
 **Inputs:** `spec/domains/novels/requirements.md` and
-`spec/features/novels/create-novel.feature`, plus `spec/domains/novels/ui/novel-form.ui.md`.
+`spec/features/novels/create-novel.feature`.
 **Consumers:** `create-novel.design.md`.
 
 This is the single source of truth for the novels tables, the shared `NovelDto`,

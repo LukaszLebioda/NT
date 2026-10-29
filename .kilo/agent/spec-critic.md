@@ -18,7 +18,6 @@ report findings in a review file.
 1. Read the target feature and its backing documents:
    - `spec/features/<domain>/<feature-slug>.feature`,
    - `spec/domains/<domain>/requirements.md` (the rules of record),
-   - any `spec/domains/<domain>/ui/*.ui.md` (visual notes),
    - sibling features in the same domain when relevant.
 2. Check:
    - **Coverage** — every scenario has at least one valid
@@ -34,8 +33,6 @@ report findings in a review file.
    - **Testability** — each step is concrete and observable; flag vague wording.
    - **Assumptions** — heavy reliance on `[INFERRED]` evidence; any remaining
      `@todo`.
-   - **Design coherence** — the `ui/*.ui.md` notes introduce no behaviour absent
-     from the rules.
 3. **Always** produce `spec/features/<domain>/<feature-slug>.review.md` with
    these sections:
    - `## Blocking issues`

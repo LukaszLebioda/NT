@@ -9,7 +9,7 @@ Run the spec-architect agent for the given feature:
 $ARGUMENTS
 
 The architect reads the feature, its review file (which must say Approved for
-design), the domain requirements.md, and any ui/ notes, then writes
+design), and the domain requirements.md, then writes
 spec/features/<domain>/<feature-slug>.design.md with an API contract, a
 PostgreSQL data model, a UI plan, a test plan, and traceability. It never edits
 .feature or requirements.md.

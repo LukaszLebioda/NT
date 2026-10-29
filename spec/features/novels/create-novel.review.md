@@ -2,8 +2,7 @@
 
 Reviewer: spec-critic · Date: 2026-10-27
 Scope reviewed: `create-novel.feature` (20 scenarios) and rules
-`REQ-001…REQ-011`, `REQ-037`, `REQ-038`, `REQ-039`, plus the UI note
-`spec/domains/novels/ui/novel-form.ui.md`.
+`REQ-001…REQ-011`, `REQ-037`, `REQ-038`, `REQ-039`.
 
 **Scope note:** the feature was narrowed on 2026-10-27. Authentication and
 per-user ownership are deferred; the former "anonymous cannot add" scenario
