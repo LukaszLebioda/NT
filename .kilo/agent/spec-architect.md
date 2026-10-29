@@ -3,6 +3,7 @@ description: Design — turns an approved feature's requirements and scenarios i
 mode: all
 permission:
   edit:
+    "STATUS.md": allow
     "spec/features/**/*.design.md": allow
     "spec/domains/**/data-model.md": allow
     "spec/features/**/*.feature": deny
@@ -38,6 +39,17 @@ does not contain `Approved for design`, stop and say so.
    stop.
 5. Print `[STATUS] <domain>/<feature-slug> designed done|blocked: <reason>` in
    your final reply.
+
+## Update STATUS.md (automatic handoff)
+
+After writing `.design.md` and `data-model.md`, edit the root `STATUS.md`:
+
+- In the pipeline table, mark the **designed** column ✅ for
+  `<domain>/<feature-slug>` (add the row if it is missing).
+- Set the `## Next action` section to `/spec-test <domain>/<feature-slug>`.
+- If you are blocked, set `## Next action` to the blocker and what the user must do.
+
+Then print your `[STATUS]` line. Never edit `README.md`.
 
 ## Rules
 

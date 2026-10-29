@@ -3,6 +3,7 @@ description: Spec review — critiques a feature's Gherkin scenarios and their b
 mode: all
 permission:
   edit:
+    "STATUS.md": allow
     "spec/features/**/*.review.md": allow
     "spec/features/**/*.feature": deny
 ---
@@ -55,6 +56,19 @@ report findings in a review file.
      orchestrator to run a `--revise` analyse and re-critique);
    - `[STATUS] <domain>/<feature-slug> critiqued blocked: <reason>` for any other
      blocker.
+
+## Update STATUS.md (automatic handoff)
+
+After writing `.review.md`, edit the root `STATUS.md`:
+
+- In the pipeline table, mark the **critiqued** column ✅ for
+  `<domain>/<feature-slug>` (add the row if it is missing).
+- Set the `## Next action` section to `/spec-design <domain>/<feature-slug>` when
+  the verdict is `Approved for design`; if `Changes required`, set it to
+  `/spec-analyse <domain>/<feature-slug> --revise`, then re-run `/spec-critique`.
+- If you are blocked, set `## Next action` to the blocker and what the user must do.
+
+Then print your `[STATUS]` line. Never edit `README.md`.
 
 ## Rules
 

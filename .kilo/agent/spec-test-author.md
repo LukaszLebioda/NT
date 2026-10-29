@@ -3,6 +3,7 @@ description: Test authoring (red) — turns approved features and their design d
 mode: all
 permission:
   edit:
+    "STATUS.md": allow
     "app/tests/**": allow
     "spec/features/**/*.feature": deny
 ---
@@ -40,6 +41,17 @@ comment above it.
    stop.
 7. Print `[STATUS] <domain>/<feature-slug> tested-red done|blocked: <reason>` in
    your final reply.
+
+## Update STATUS.md (automatic handoff)
+
+After writing the tests and fixtures, edit the root `STATUS.md`:
+
+- In the pipeline table, mark the **tested (red)** column ✅ for
+  `<domain>/<feature-slug>` (add the row if it is missing).
+- Set the `## Next action` section to `/spec-implement <domain>/<feature-slug>`.
+- If you are blocked, set `## Next action` to the blocker and what the user must do.
+
+Then print your `[STATUS]` line. Never edit `README.md`.
 
 ## Rules
 

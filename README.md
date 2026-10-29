@@ -261,3 +261,10 @@ stage, review, then the next). The automatic driver (`/spec-flow`) is
   auto-loaded file stable and follow the common convention of separating durable
   instructions from live state. References updated in `.kilo/rules/core.md`,
   `FLOW.md`, `.kilo/suspended-agents/spec-orchestrator.md`, and this README.
+- 2026-10-29 — **Stage agents update `STATUS.md` automatically.** Each stage agent
+  (`spec-analyst`, `spec-critic`, `spec-architect`, `spec-test-author`,
+  `spec-implementer`) now has edit permission on `STATUS.md` and a handoff step:
+  after writing its outputs it ticks its column and sets `## Next action` to the
+  next command (or the blocker), before printing `[STATUS]`. Previously only the
+  user/orchestrator wrote status, so manual runs left `STATUS.md` stale. `README.md`
+  stays controller-owned. `.kilo/rules/core.md`, `AGENTS.md`, and `FLOW.md` updated.

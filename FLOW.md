@@ -64,7 +64,8 @@ agents' specs.
 **Status:** `[STATUS] <domain>/<feature-slug> analysed done` — the machine-readable
 line your next command keys off.
 
-**Feeds the next step:** `/spec-critique <domain>/<feature-slug>`.
+**Feeds the next step:** `/spec-critique <domain>/<feature-slug>` — the analyst
+ticks `analysed` and sets this as `STATUS.md`'s Next action.
 
 **What it does:**
 
@@ -207,6 +208,8 @@ whatever the verdict.
 **Feeds the next step:** on `done` → `/spec-design <domain>/<feature-slug>`; on
 `blocked: spec-change-required` → `/spec-analyse <domain>/<feature-slug> --revise`
 with the corrections, then re-run `/spec-critique` until `Approved for design`.
+The critic records the verdict by ticking `critiqued` and setting the
+corresponding Next action in `STATUS.md`.
 
 **What it does:**
 
@@ -313,7 +316,8 @@ explicitly **denied**.
 
 **Status:** `[STATUS] <domain>/<feature-slug> designed done|blocked: <reason>`.
 
-**Feeds the next step:** `/spec-test <domain>/<feature-slug>`.
+**Feeds the next step:** `/spec-test <domain>/<feature-slug>` — the architect
+ticks `designed` and sets this as `STATUS.md`'s Next action.
 
 **Precondition:** The `.review.md` must exist and contain `Approved for design`.
 
@@ -534,7 +538,8 @@ under `app/tests/e2e/fixtures/`.
 (the tests must fail for the *right* reason — a missing endpoint or an assertion,
 never a typo/import/syntax error).
 
-**Feeds the next step:** `/spec-implement <domain>/<feature-slug>`.
+**Feeds the next step:** `/spec-implement <domain>/<feature-slug>` — the
+test-author ticks `tested (red)` and sets this as `STATUS.md`'s Next action.
 
 **What it does:**
 
@@ -751,8 +756,9 @@ Isolated context — no chat history, only `$ARGUMENTS` and the files on disk.
 (reported only once `npm run test:api` and `npm run test:e2e` pass).
 
 **Feeds the next step:** nothing to run — the chain ends here for now (stages 6
-review and 7 document do not exist). You update `STATUS.md` (and the `README.md`
-decisions log only if a decision changed).
+review and 7 document do not exist). The implementer ticks `implemented` and sets
+`STATUS.md`'s Next action to validation; you only append to the `README.md`
+decisions log if a decision changed.
 
 **What it does:**
 
@@ -1410,10 +1416,12 @@ Prerequisites: `npm install` and PostgreSQL running with `.env` filled in.
 **Who updates `STATUS.md`:**
 
 - **Stage agents** (analyst, critic, architect, test-author, implementer):
-  - Print `[STATUS]` line only
-  - Do NOT update `STATUS.md` or `README.md`
-- **Orchestrator or user:**
-  - Update `STATUS.md` (stage table + next action) once after full flow or when blocked
+  - Tick their stage's column for the feature
+  - Set the `## Next action` to the next command (or the blocker)
+  - Then print the `[STATUS]` line
+- **User:**
+  - Append to the `README.md` history log for decisions/reversals
+  - Correct `STATUS.md` if a stage left it wrong
 
 **When to update:**
 

@@ -5,6 +5,7 @@ mode: all # primary - only human trigerred, subagent - agent trigerres, all - bo
 # model: kilo/deepseek/deepseek-v4.1-flash
 permission:
   edit:
+    "STATUS.md": allow
     "spec/features/**": allow
     "spec/domains/**/requirements.md": allow
 ---
@@ -40,6 +41,18 @@ scenarios. You never write application code — only specifications.
      (`[INFERRED]`, `[DECIDED]`, `[SECURITY]`, `[SCOPE-OUT]`, `[REVISE]`) and any
      open `@todo` questions.
 6. Print `[STATUS] <domain>/<feature-slug> analysed done` in your final reply.
+
+## Update STATUS.md (automatic handoff)
+
+After writing the requirements and `.feature`, edit the root `STATUS.md`:
+
+- In the pipeline table, mark the **analysed** column ✅ for
+  `<domain>/<feature-slug>` (add the row if it is missing).
+- Set the `## Next action` section to `/spec-critique <domain>/<feature-slug>`.
+- If you are blocked, set `## Next action` to the blocker and what the user must do.
+
+Then print your `[STATUS]` line. Never edit `README.md` — the history log is owned
+by the user/orchestrator.
 
 ## Rules
 

@@ -15,13 +15,13 @@ zero memory of this conversation.
 - **Start of every session/task:** `AGENTS.md` is auto-loaded and points to
   `STATUS.md`; **`STATUS.md` is the single source of truth** for the stage and the
   next action. Read it first.
-- **Stage agents** (analyst, critic, architect, test-author, implementer):
-  update only your stage's status (print `[STATUS]` line). Do NOT update
-  `STATUS.md` or `README.md` — the orchestrator or user does that once at the
-  end of the flow.
-- **Orchestrator or manual flow end:** update `STATUS.md` (stage table + next
-  action) once after the full flow or when genuinely blocked. Append to `README.md`
-  progress log only for decisions/reversals, not routine progress.
+- **Stage agents** (analyst, critic, architect, test-author, implementer): before
+  finishing, update the root `STATUS.md` — tick your stage's column for the
+  feature and set `## Next action` to the next command (or to the blocker) — then
+  print your `[STATUS]` line. Do NOT edit `README.md`; the history log is owned by
+  the user/orchestrator.
+- **User:** append to `README.md`'s progress log only for decisions/reversals, not
+  routine progress; correct `STATUS.md` if a stage left it wrong.
 - **Never leave a decision, blocker, convention, or next step only in chat.**
   If it matters to continuing the work, write it to a durable file.
 - Keep `STATUS.md` short and unambiguous: a fresh agent with no history must be

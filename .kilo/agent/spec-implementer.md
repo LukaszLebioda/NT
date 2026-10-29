@@ -4,6 +4,7 @@ mode: all
 permission:
   edit:
     "*": ask
+    "STATUS.md": allow
     "app/server/**": allow
     "app/client/**": allow
     "app/docker/**": allow
@@ -44,6 +45,19 @@ Infrastructure: Docker (`app/docker/`), Jenkins (`app/jenkins/`).
    problem, report it; do not weaken or delete tests to make them pass.
 7. Print `[STATUS] <domain>/<feature-slug> implemented done|blocked: <reason>` in
    your final reply.
+
+## Update STATUS.md (automatic handoff)
+
+After the tests pass, edit the root `STATUS.md`:
+
+- In the pipeline table, mark the **implemented** column ✅ for
+  `<domain>/<feature-slug>` (add the row if it is missing).
+- Set the `## Next action` section to: validate with `npm run test:api` and
+  `npm run test:e2e`, then choose the next feature (the chain ends here until
+  stages 6 review and 7 document exist).
+- If you are blocked, set `## Next action` to the blocker and what the user must do.
+
+Then print your `[STATUS]` line. Never edit `README.md`.
 
 ## Rules
 

@@ -157,8 +157,9 @@ and 7 (document) are not created yet, so the chain stops after implementation.
    - Implementer: only writes `app/`, never `spec/`
 4. **The user controls the pace** — one stage at a time, review the output, then
    run the next.
-5. **Continuity** — keep `STATUS.md` current (stage table + next action) so any
-   session can resume; never leave status only in chat.
+5. **Continuity** — each stage agent ticks its column and sets the next action in
+   `STATUS.md` before finishing; the user keeps the `README.md` log. Never leave
+   status only in chat.
 
 ## Local tooling note
 
