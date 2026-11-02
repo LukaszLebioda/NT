@@ -22,6 +22,8 @@ description/mode/permission/prompt; change model or step limits in the config.
 - Scenarios: `spec/features/<domain>/*.feature` · reviews: `*.review.md`
 - Designs: `spec/features/<domain>/*.design.md` · data models: `spec/domains/<domain>/data-model.md`
 - How to run locally: `README.md` · narrative history: `README.md` progress log
+- Stage emails: `tools/notify/` (Gmail SMTP; every stage emails a report — see
+  `.kilo/rules/core.md` § Stage notifications)
 
 ## Stack conventions
 

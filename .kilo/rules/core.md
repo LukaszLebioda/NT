@@ -27,6 +27,27 @@ zero memory of this conversation.
 - Keep `STATUS.md` short and unambiguous: a fresh agent with no history must be
   able to resume from it alone.
 
+## Stage notifications — email after each stage
+
+Every stage agent, after updating `STATUS.md` and before printing `[STATUS]`, sends
+one report email:
+
+```
+node tools/notify/notify.mjs \
+  --agent <agent> --stage <stage> --feature <domain>/<feature-slug> \
+  --result done|blocked|needs-approval \
+  --summary "<2–4 sentences: what you produced>" \
+  --next "<next command, or what the user must do>"
+```
+
+- The notifier lives in `tools/notify/` (Gmail SMTP; see `tools/notify/README.md`).
+  It is non-blocking: if email is not configured it warns and exits 0.
+- **Approval-gated actions are the user's decision, not yours.** Never run
+  `npm install`, migrations, network installs, or destructive git commands
+  yourself. Stop, send `--result needs-approval` with the exact command in
+  `--next`, set `STATUS.md`'s Next action to match, and let the user run it.
+- The user reads the email and runs the next command manually (Option A).
+
 ## Documentation sync — start of every task
 
 Before doing anything else, check that `STATUS.md`, the specs,

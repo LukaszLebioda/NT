@@ -49,6 +49,7 @@ NovelTracker/
 ├── spec/            the specifications (what the product must do)
 │   ├── domains/<domain>/    requirements.md, data-model.md
 │   └── features/<domain>/   *.feature, *.review.md, *.design.md
+├── tools/notify/    per-stage email reports (Gmail SMTP)
 ├── app/             the runnable product
 │   ├── server/      Express API (src/, migrations/)
 │   ├── client/      React UI (Vite)
@@ -275,3 +276,12 @@ stage, review, then the next). The automatic driver (`/spec-flow`) is
   References cleaned from `.kilo/rules/core.md`, the `spec-critic`/`spec-architect`
   prompts, the `spec-critique`/`spec-design` commands, `AGENTS.md`, `FLOW.md`, and
   the spec docs (`data-model.md`, `create-novel.review.md`, `create-novel.design.md`).
+- 2026-10-30 — **Per-stage email reports (Option A).** Added a self-contained
+  `tools/notify/` feature (nodemailer over Gmail SMTP) that each stage agent calls
+  after updating `STATUS.md`: it emails the agent, result, summary, files
+  added/changed/deleted, and the next step. Config via `GMAIL_USER`,
+  `GMAIL_APP_PASSWORD`, `MAIL_TO` in `.env`. Approval-gated actions (`npm install`,
+  migrations, destructive git) are never run by an agent — it stops and emails
+  `needs-approval` for the user to decide. No orchestrator; the user runs the next
+  `/spec-*` command. Wired into `.kilo/rules/core.md`, the five agent prompts,
+  `AGENTS.md`, `FLOW.md`, `.kilo/kilo.json`, `.env.example`, and the root workspace.

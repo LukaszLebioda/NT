@@ -1,0 +1,13 @@
+{
+  "name": "@noveltracker/notify",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Sends one per-stage report email over Gmail SMTP (nodemailer).",
+  "bin": {
+    "noveltracker-notify": "notify.mjs"
+  },
+  "dependencies": {
+    "nodemailer": "^6.9.14"
+  }
+}

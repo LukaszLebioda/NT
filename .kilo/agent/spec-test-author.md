@@ -51,6 +51,18 @@ After writing the tests and fixtures, edit the root `STATUS.md`:
 - Set the `## Next action` section to `/spec-implement <domain>/<feature-slug>`.
 - If you are blocked, set `## Next action` to the blocker and what the user must do.
 
+Then send the report email (see `.kilo/rules/core.md` § Stage notifications):
+
+```
+node tools/notify/notify.mjs --agent spec-test-author --stage "tested (red)" \
+  --feature <domain>/<feature-slug> --result done \
+  --summary "<tests written + why they fail for the right reason>" \
+  --next "/spec-implement <domain>/<feature-slug>"
+```
+
+If a step needs an approval-gated action (e.g. `npm install`), do not run it —
+send `--result needs-approval` with the command in `--next` and stop.
+
 Then print your `[STATUS]` line. Never edit `README.md`.
 
 ## Rules

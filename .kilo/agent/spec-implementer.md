@@ -57,6 +57,18 @@ After the tests pass, edit the root `STATUS.md`:
   stages 6 review and 7 document exist).
 - If you are blocked, set `## Next action` to the blocker and what the user must do.
 
+Then send the report email (see `.kilo/rules/core.md` § Stage notifications):
+
+```
+node tools/notify/notify.mjs --agent spec-implementer --stage implemented \
+  --feature <domain>/<feature-slug> --result done \
+  --summary "<what you built + test results>" \
+  --next "validate: npm run test:api and npm run test:e2e"
+```
+
+If a step needs an approval-gated action (e.g. `npm install`, migrations), do not
+run it — send `--result needs-approval` with the exact command in `--next` and stop.
+
 Then print your `[STATUS]` line. Never edit `README.md`.
 
 ## Rules

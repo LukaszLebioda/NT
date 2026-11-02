@@ -6,9 +6,11 @@
   "workspaces": [
     "app/server",
     "app/client",
-    "app/tests"
+    "app/tests",
+    "tools/notify"
   ],
   "scripts": {
+    "notify": "node tools/notify/notify.mjs",
     "dev:server": "npm --workspace app/server run dev",
     "dev:client": "npm --workspace app/client run dev",
     "test:api": "npm --workspace app/tests run test:api",

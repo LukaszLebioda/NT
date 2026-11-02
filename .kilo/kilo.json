@@ -20,7 +20,8 @@
       "git *": "allow",
       "npm *": "allow",
       "pwd": "allow",
-      "*": "ask"
+      "*": "ask",
+      "node tools/notify/notify.mjs*": "allow"
     },
     "glob": "allow",
     "grep": "allow",

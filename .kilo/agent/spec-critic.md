@@ -65,6 +65,18 @@ After writing `.review.md`, edit the root `STATUS.md`:
   `/spec-analyse <domain>/<feature-slug> --revise`, then re-run `/spec-critique`.
 - If you are blocked, set `## Next action` to the blocker and what the user must do.
 
+Then send the report email (see `.kilo/rules/core.md` § Stage notifications):
+
+```
+node tools/notify/notify.mjs --agent spec-critic --stage critiqued \
+  --feature <domain>/<feature-slug> --result done \
+  --summary "<verdict + key findings>" --next "/spec-design <domain>/<feature-slug>"
+```
+
+If the verdict is `Changes required`, use `--next "/spec-analyse <domain>/<feature-slug> --revise"`.
+If a step needs an approval-gated action, do not run it — send
+`--result needs-approval` with the command in `--next` and stop.
+
 Then print your `[STATUS]` line. Never edit `README.md`.
 
 ## Rules

@@ -1314,9 +1314,10 @@ app/
 
 ```
 NovelTracker/
-├── package.json                      [implementer, scaffold - workspace config]
+├── package.json                      [workspace config + notify script]
+├── tools/notify/                     [email reports — Gmail SMTP]
 ├── .env                              [you, manual setup]
-└── .env.example                      [implementer, scaffold]
+└── .env.example                      [scaffold]
 ```
 
 ---
@@ -1443,6 +1444,30 @@ The README's **"Progress log"** is a **decisions log**:
 - Test passes
 - Code refactors
 - Bug fixes
+
+---
+
+## Stage notifications (email)
+
+After every stage the agent emails you a report — no orchestrator needed
+("Option A"). The notifier lives in `tools/notify/` and sends over Gmail SMTP via
+nodemailer:
+
+```
+node tools/notify/notify.mjs --agent <agent> --stage <stage> \
+  --feature <domain>/<feature-slug> --result done|blocked|needs-approval \
+  --summary "<what was done>" --next "<next command>"
+```
+
+The email contains: the agent and stage, the result, a short summary, the files
+added/changed/deleted (from `git status` / `git diff --stat`), and the next step.
+Configure it with `GMAIL_USER`, `GMAIL_APP_PASSWORD`, `MAIL_TO` in `.env` (see
+`tools/notify/README.md`). It is non-blocking: if email is unconfigured it warns
+and exits 0.
+
+Approval-gated actions (`npm install`, migrations, destructive git) are never run
+by an agent: it stops, emails `needs-approval` with the exact command, and the
+decision is yours. You then run the next `/spec-*` command manually.
 
 ---
 
