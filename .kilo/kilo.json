@@ -4,7 +4,7 @@
   "agent": {
     "spec-analyst": { "steps": 10 },
     "spec-critic": { "steps": 10 },
-    "spec-architect": { "steps": 20 },
+    "spec-designer": { "steps": 20 },
     "spec-test-author": { "steps": 30 },
     "spec-implementer": { "steps": 40 },
     "spec-orchestrator": { "steps": 60 }

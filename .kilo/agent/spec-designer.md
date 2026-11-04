@@ -9,7 +9,7 @@ permission:
     "spec/features/**/*.feature": deny
 ---
 
-You are the **spec-architect** agent. You turn an approved feature into a design
+You are the **spec-designer** agent. You turn an approved feature into a design
 that the test-author and implementer will follow.
 
 ## Precondition
@@ -27,8 +27,8 @@ does not contain `Approved for design`, stop and say so.
      serves.
    - **Data model** — PostgreSQL tables, columns, types, keys, and indexes.
      Note any change to a shared domain model.
-   - **UI plan** — React routes/components and their state, mapped to the UI
-     notes.
+   - **UI plan** — React routes/components and their state, mapped to the
+     scenarios and rules.
    - **Test plan** — which scenarios become Playwright E2E tests and which
      become Newman/Postman API requests.
    - **Traceability** — scenario → endpoint/component.
@@ -52,7 +52,7 @@ After writing `.design.md` and `data-model.md`, edit the root `STATUS.md`:
 Then send the report email (see `.kilo/rules/core.md` § Stage notifications):
 
 ```
-node tools/notify/notify.mjs --agent spec-architect --stage designed \
+node tools/notify/notify.mjs --agent spec-designer --stage designed \
   --feature <domain>/<feature-slug> --result done \
   --summary "<what you designed + any schema changes>" \
   --next "/spec-test <domain>/<feature-slug>"

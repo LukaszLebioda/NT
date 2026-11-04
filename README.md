@@ -106,7 +106,7 @@ previous stage's output and produces the next:
 | --------- | ------------------------------------ | ------------------ | -------------------------------------------- |
 | analyse   | `/spec-analyse <description>`         | `spec-analyst`     | the numbered rules + the Gherkin scenarios   |
 | critique  | `/spec-critique <domain>/<feature>`  | `spec-critic`      | a review file + verdict (gates design)       |
-| design    | `/spec-design <domain>/<feature>`    | `spec-architect`   | the technical design + the shared data model |
+| design    | `/spec-design <domain>/<feature>`    | `spec-designer`   | the technical design + the shared data model |
 | test      | `/spec-test <domain>/<feature>`      | `spec-test-author` | the tests (red)                              |
 | implement | `/spec-implement <domain>/<feature>` | `spec-implementer` | the working code (green)                     |
 
@@ -242,7 +242,7 @@ stage, review, then the next). The automatic driver (`/spec-flow`) is
   files back to `.kilo/agent/` and `.kilo/command/`. Docs updated (`AGENTS.md`,
   `.kilo/rules/core.md`, `FLOW.md`, `README.md`) to stop advertising `/spec-flow`.
 - 2026-10-28 — **One model pinned across the pipeline.** Every stage agent
-  (`spec-analyst`, `spec-critic`, `spec-architect`, `spec-test-author`,
+  (`spec-analyst`, `spec-critic`, `spec-designer`, `spec-test-author`,
   `spec-implementer`) and the suspended `spec-orchestrator` now declares
   `model: kilo/deepseek/deepseek-v4.1-flash` (provider `kilo`). Previously only
   the analyst was pinned (to GLM 5.3) while the rest inherited the dialog model,
@@ -251,7 +251,7 @@ stage, review, then the next). The automatic driver (`/spec-flow`) is
 - 2026-10-28 — **Project settings centralised in `.kilo/kilo.json`.** The model
   and per-agent step budgets moved out of the agent `.md` frontmatter into the
   root config: a top-level `model` sets the default for every agent, and an
-  `agent` block sets each stage's `steps` (analyst/critic 30, architect 40,
+  `agent` block sets each stage's `steps` (analyst/critic 30, designer 40,
   test-author 60, implementer 80, orchestrator 100). The `.md` files now carry
   only description/mode/permission/prompt, so model/step changes are made in one
   file. Kilo merges config agent settings with the markdown agent by name.
@@ -263,7 +263,7 @@ stage, review, then the next). The automatic driver (`/spec-flow`) is
   instructions from live state. References updated in `.kilo/rules/core.md`,
   `FLOW.md`, `.kilo/suspended-agents/spec-orchestrator.md`, and this README.
 - 2026-10-29 — **Stage agents update `STATUS.md` automatically.** Each stage agent
-  (`spec-analyst`, `spec-critic`, `spec-architect`, `spec-test-author`,
+  (`spec-analyst`, `spec-critic`, `spec-designer`, `spec-test-author`,
   `spec-implementer`) now has edit permission on `STATUS.md` and a handoff step:
   after writing its outputs it ticks its column and sets `## Next action` to the
   next command (or the blocker), before printing `[STATUS]`. Previously only the
@@ -272,8 +272,8 @@ stage, review, then the next). The automatic driver (`/spec-flow`) is
 - 2026-10-29 — **Removed UI notes.** Deleted `spec/domains/novels/ui/` (the
   `.ui.md` low-fidelity UI notes) and dropped that layer from the spec model.
   Specs are now two layers — domain `requirements.md` (rules) and feature
-  `.feature` (examples) — plus `data-model.md` and the architect's `.design.md`.
-  References cleaned from `.kilo/rules/core.md`, the `spec-critic`/`spec-architect`
+  `.feature` (examples) — plus `data-model.md` and the designer's `.design.md`.
+  References cleaned from `.kilo/rules/core.md`, the `spec-critic`/`spec-designer`
   prompts, the `spec-critique`/`spec-design` commands, `AGENTS.md`, `FLOW.md`, and
   the spec docs (`data-model.md`, `create-novel.review.md`, `create-novel.design.md`).
 - 2026-10-30 — **Per-stage email reports (Option A).** Added a self-contained

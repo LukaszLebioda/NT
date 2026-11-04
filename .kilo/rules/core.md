@@ -15,7 +15,7 @@ zero memory of this conversation.
 - **Start of every session/task:** `AGENTS.md` is auto-loaded and points to
   `STATUS.md`; **`STATUS.md` is the single source of truth** for the stage and the
   next action. Read it first.
-- **Stage agents** (analyst, critic, architect, test-author, implementer): before
+- **Stage agents** (analyst, critic, designer, test-author, implementer): before
   finishing, update the root `STATUS.md` — tick your stage's column for the
   feature and set `## Next action` to the next command (or to the blocker) — then
   print your `[STATUS]` line. Do NOT edit `README.md`; the history log is owned by

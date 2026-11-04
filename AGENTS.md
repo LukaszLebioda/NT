@@ -115,7 +115,7 @@ analyse → critique → design → test → implement → review → document.
    (Blocking issues, Warnings, Edge cases missed, Coverage gaps, Suggested
    scenarios; verdict `Approved for design` / `Changes required`); the review
    file gates design.
-3. `spec-architect` — turns an `Approved for design` feature into
+3. `spec-designer` — turns an `Approved for design` feature into
    `.design.md` (API contract, PostgreSQL data model, UI plan, test plan) and
    maintains `spec/domains/<domain>/data-model.md`.
 4. `spec-test-author` — writes tests: Playwright (UI) under `app/tests/e2e/`,
@@ -152,7 +152,7 @@ and 7 (document) are not created yet, so the chain stops after implementation.
 3. **No agent edits another agent's domain:**
    - Analyst: owns `requirements.md` + `.feature`
    - Critic: only reads, writes `.review.md`
-   - Architect: only reads specs, writes `.design.md` + `data-model.md`
+   - Designer: only reads specs, writes `.design.md` + `data-model.md`
    - Test-author: only writes `app/tests/`, never `app/server/` or `app/client/`
    - Implementer: only writes `app/`, never `spec/`
 4. **The user controls the pace** — one stage at a time, review the output, then
