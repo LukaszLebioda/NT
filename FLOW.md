@@ -328,7 +328,7 @@ ticks `designed` and sets this as `STATUS.md`'s Next action.
 
 #### 1. `spec/features/<domain>/<feature-slug>.design.md`
 
-The **technical blueprint** for test-author and implementer.
+The **technical blueprint** for spec-tester and implementer.
 
 **Structure:**
 
@@ -509,11 +509,11 @@ Unique: `(novel_id, genre)` — no duplicate genres per novel.
 
 **Command:** `/spec-test <domain>/<feature-slug>`
 
-**Agent:** `spec-test-author` (`.kilo/agent/spec-test-author.md`) — reached via
-`.kilo/command/spec-test.md`, whose frontmatter says `agent: spec-test-author`.
+**Agent:** `spec-tester` (`.kilo/agent/spec-tester.md`) — reached via
+`.kilo/command/spec-test.md`, whose frontmatter says `agent: spec-tester`.
 
 **How this step runs:** Kilo finds `.kilo/command/spec-test.md`, reads its
-`agent:` field, loads `.kilo/agent/spec-test-author.md` as the agent's system
+`agent:` field, loads `.kilo/agent/spec-tester.md` as the agent's system
 prompt, and replaces `$ARGUMENTS` with `<domain>/<feature-slug>`. Injected before
 it works: **`AGENTS.md`**, **`.kilo/rules/core.md`**, **`.kilo/kilo.json`**.
 Isolated context — no chat history, only `$ARGUMENTS` and the files on disk.
@@ -535,7 +535,7 @@ under `app/tests/e2e/fixtures/`.
 never a typo/import/syntax error).
 
 **Feeds the next step:** `/spec-implement <domain>/<feature-slug>` — the
-test-author ticks `tested (red)` and sets this as `STATUS.md`'s Next action.
+spec-tester ticks `tested (red)` and sets this as `STATUS.md`'s Next action.
 
 **What it does:**
 
@@ -711,7 +711,7 @@ test.describe("Create a novel", () => {
 
 ### Red Phase Verification
 
-The test-author agent:
+The spec-tester agent:
 
 1. Runs the tests
 2. Confirms they **fail for the right reason**:
@@ -1188,7 +1188,7 @@ Runs the **entire chain automatically** without you typing each stage command:
    - Invokes `spec-analyst --revise` with corrections
    - Re-runs critique
 7. Invokes `spec-designer` → design
-8. Invokes `spec-test-author` → test
+8. Invokes `spec-tester` → test
 9. Invokes `spec-implementer` → implement
 10. Updates `STATUS.md`
 11. Reports success or blocker
@@ -1294,14 +1294,14 @@ app/
 │   ├── playwright.config.js                     [implementer, scaffold]
 │   ├── e2e/
 │   │   ├── fixtures/
-│   │   │   ├── valid-picture.jpg                [test-author, stage 4]
-│   │   │   ├── large-picture.jpg                [test-author, stage 4]
-│   │   │   └── invalid-picture.txt              [test-author, stage 4]
+│   │   │   ├── valid-picture.jpg                [spec-tester, stage 4]
+│   │   │   ├── large-picture.jpg                [spec-tester, stage 4]
+│   │   │   └── invalid-picture.txt              [spec-tester, stage 4]
 │   │   └── novels/
-│   │       └── create-novel.spec.js             [test-author, stage 4]
+│   │       └── create-novel.spec.js             [spec-tester, stage 4]
 │   └── api/
 │       └── novels/
-│           └── create-novel.postman_collection.json [test-author, stage 4]
+│           └── create-novel.postman_collection.json [spec-tester, stage 4]
 ├── docker/
 │   ├── Dockerfile.server                        [implementer, scaffold]
 │   ├── Dockerfile.client                        [implementer, scaffold]
@@ -1340,7 +1340,7 @@ NovelTracker/
 
 ### Gate 2: Tests Must Fail for Right Reason
 
-**Location:** Stage 4 (test-author)
+**Location:** Stage 4 (spec-tester)
 
 **Rule:** Tests must fail due to **missing implementation**, not test bugs.
 
@@ -1410,7 +1410,7 @@ Prerequisites: `npm install` and PostgreSQL running with `.env` filled in.
 
 **Who updates `STATUS.md`:**
 
-- **Stage agents** (analyst, critic, designer, test-author, implementer):
+- **Stage agents** (analyst, critic, designer, spec-tester, implementer):
   - Tick their stage's column for the feature
   - Set the `## Next action` to the next command (or the blocker)
   - Then print the `[STATUS]` line
@@ -1487,7 +1487,7 @@ budget come from the root config `.kilo/kilo.json` (top-level `model` + an
 | `/spec-analyse <domain>/<feature> --revise` | spec-analyst      | `.kilo/agent/spec-analyst.md`       | 1     | edited `.feature` (+ `requirements.md`)  | `analysed done`                                      |
 | `/spec-critique <domain>/<feature>`        | spec-critic       | `.kilo/agent/spec-critic.md`        | 2     | `.review.md` with verdict                | `critiqued done` / `critiqued blocked: spec-change-required` |
 | `/spec-design <domain>/<feature>`          | spec-designer    | `.kilo/agent/spec-designer.md`     | 3     | `.design.md` + `data-model.md`           | `designed done`                                      |
-| `/spec-test <domain>/<feature>`            | spec-test-author  | `.kilo/agent/spec-test-author.md`   | 4     | tests (red/failing)                      | `tested-red done`                                    |
+| `/spec-test <domain>/<feature>`            | spec-tester       | `.kilo/agent/spec-tester.md`        | 4     | tests (red/failing)                      | `tested-red done`                                    |
 | `/spec-implement <domain>/<feature>`       | spec-implementer  | `.kilo/agent/spec-implementer.md`   | 5     | app code (green)                         | `implemented done`                                   |
 | `/spec-flow <description>` _(suspended)_   | spec-orchestrator | `.kilo/agent/spec-orchestrator.md`  | all   | whole chain                              | `… done`                                             |
 
@@ -1500,7 +1500,7 @@ Each row is *in addition to* the always-loaded `AGENTS.md` + `.kilo/rules/core.m
 | 1 Analyse | spec-analyst | your description / `--revise` text · `spec/domains/<domain>/requirements.md` (if any) | `spec/domains/<domain>/requirements.md`, then `spec/features/<domain>/<feature>.feature` |
 | 2 Critique | spec-critic | `.feature` · `requirements.md` · sibling features | `spec/features/<domain>/<feature>.review.md` |
 | 3 Design | spec-designer | `.feature` · `.review.md` (must be `Approved for design`) · `requirements.md` | `spec/features/<domain>/<feature>.design.md`, `spec/domains/<domain>/data-model.md` |
-| 4 Test | spec-test-author | `.feature` · `.design.md` (fixtures section) · `data-model.md` | `app/tests/e2e/**`, `app/tests/api/**`, `app/tests/e2e/fixtures/**` |
+| 4 Test | spec-tester | `.feature` · `.design.md` (fixtures section) · `data-model.md` | `app/tests/e2e/**`, `app/tests/api/**`, `app/tests/e2e/fixtures/**` |
 | 5 Implement | spec-implementer | `.feature` · `.design.md` · `data-model.md` · existing `app/tests/**` | `app/**`, root `package.json` |
 
 ### Files by Stage
@@ -1539,7 +1539,7 @@ Done! Feature implemented and tests pass.
 | spec-analyst                    | `requirements.md`, `.feature`          | Everything else                              |
 | spec-critic                     | `.review.md`                           | `.feature`, `requirements.md`                |
 | spec-designer                  | `.design.md`, `data-model.md`          | `.feature`, `requirements.md`                |
-| spec-test-author                | `app/tests/**`                         | `.feature`, `app/server/**`, `app/client/**` |
+| spec-tester                     | `app/tests/**`                         | `.feature`, `app/server/**`, `app/client/**` |
 | spec-implementer                | `app/**`                               | `.feature`, `requirements.md`                |
 | spec-orchestrator _(suspended)_ | `STATUS.md`, `README.md` | `.feature`                                   |
 
@@ -1553,7 +1553,7 @@ This is how the spec-driven pipeline works:
 2. **The analyst** writes numbered requirements + Gherkin scenarios
 3. **The critic** reviews them and gates design with a verdict
 4. **The designer** writes the technical design (API + data model + UI + test plan)
-5. **The test-author** writes failing tests proving the scenarios
+5. **The spec-tester** writes failing tests proving the scenarios
 6. **The implementer** writes code until tests pass
 
 Each stage reads the previous stage's output. Specs are frozen after analysing.

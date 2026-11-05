@@ -32,7 +32,7 @@ suggestion for the user:
 | analyse (revise) | `spec-analyst` | `<domain>/<feature-slug> --revise` + correction text |
 | critique | `spec-critic` | `<domain>/<feature-slug>` |
 | design | `spec-designer` | `<domain>/<feature-slug>` |
-| test | `spec-test-author` | `<domain>/<feature-slug>` |
+| test | `spec-tester` | `<domain>/<feature-slug>` |
 | implement | `spec-implementer` | `<domain>/<feature-slug>` |
 | review | `spec-reviewer` | NOT CREATED YET |
 | document | `spec-documenter` | NOT CREATED YET |

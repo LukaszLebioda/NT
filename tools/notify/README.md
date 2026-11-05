@@ -27,7 +27,7 @@ The stage agents call it automatically, but you can run it yourself:
 
 ```
 node tools/notify/notify.mjs \
-  --agent spec-test-author --stage "tested (red)" \
+  --agent spec-tester --stage "tested (red)" \
   --feature novels/create-novel --result done \
   --summary "Wrote 20 Playwright tests + a Newman collection." \
   --next "/spec-implement novels/create-novel"

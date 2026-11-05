@@ -118,7 +118,7 @@ analyse → critique → design → test → implement → review → document.
 3. `spec-designer` — turns an `Approved for design` feature into
    `.design.md` (API contract, PostgreSQL data model, UI plan, test plan) and
    maintains `spec/domains/<domain>/data-model.md`.
-4. `spec-test-author` — writes tests: Playwright (UI) under `app/tests/e2e/`,
+4. `spec-tester` — writes tests: Playwright (UI) under `app/tests/e2e/`,
    Newman/Postman (API) under `app/tests/api/`; red phase.
 5. `spec-implementer` — scaffolds and writes `app/server/` (Express +
    PostgreSQL), `app/client/` (React), `app/docker/`, `app/jenkins/` until tests
@@ -153,7 +153,7 @@ and 7 (document) are not created yet, so the chain stops after implementation.
    - Analyst: owns `requirements.md` + `.feature`
    - Critic: only reads, writes `.review.md`
    - Designer: only reads specs, writes `.design.md` + `data-model.md`
-   - Test-author: only writes `app/tests/`, never `app/server/` or `app/client/`
+   - spec-tester: only writes `app/tests/`, never `app/server/` or `app/client/`
    - Implementer: only writes `app/`, never `spec/`
 4. **The user controls the pace** — one stage at a time, review the output, then
    run the next.

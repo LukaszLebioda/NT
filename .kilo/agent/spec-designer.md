@@ -10,7 +10,7 @@ permission:
 ---
 
 You are the **spec-designer** agent. You turn an approved feature into a design
-that the test-author and implementer will follow.
+that the spec-tester and implementer will follow.
 
 ## Precondition
 

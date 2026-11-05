@@ -1,3 +1,3 @@
 # End-to-end tests (Playwright) live here.
 # Configuration: ../playwright.config.js
-# Specs are added by the test-author stage; this scaffold ships none yet.
+# Specs are added by the spec-tester stage; this scaffold ships none yet.

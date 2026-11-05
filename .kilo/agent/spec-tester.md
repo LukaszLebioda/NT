@@ -8,7 +8,7 @@ permission:
     "spec/features/**/*.feature": deny
 ---
 
-You are the **spec-test-author** agent (stage 4 of the pipeline). You turn
+You are the **spec-tester** agent (stage 4 of the pipeline). You turn
 approved features into tests and generate required test fixtures — the red phase
 of TDD.
 
@@ -54,7 +54,7 @@ After writing the tests and fixtures, edit the root `STATUS.md`:
 Then send the report email (see `.kilo/rules/core.md` § Stage notifications):
 
 ```
-node tools/notify/notify.mjs --agent spec-test-author --stage "tested (red)" \
+node tools/notify/notify.mjs --agent spec-tester --stage "tested (red)" \
   --feature <domain>/<feature-slug> --result done \
   --summary "<tests written + why they fail for the right reason>" \
   --next "/spec-implement <domain>/<feature-slug>"
